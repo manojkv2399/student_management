@@ -1,0 +1,86 @@
+package Student_management;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class student {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO Auto-generated method stub
+		
+		System.out.println("welcome to the Student Management app");
+		
+		BufferedReader br = new BufferedReader( new InputStreamReader(System.in));
+		
+		while (true)
+		{
+			System.out.println("press 1 for Add student");
+			System.out.println("press 2 for delete student");
+			System.out.println("press 3 for display student");
+			System.out.println("press 4 for exit");
+			int c= Integer.parseInt(br.readLine());
+			
+			if(c==1)
+			{
+				// add student
+				
+				System.out.println("Enter the Name:");
+				String name = br.readLine();
+				
+				System.out.println("Enter the Phone Number:");
+				String phone = br.readLine();
+				
+				System.out.println("Enter the City:");
+				String city = br.readLine();
+				
+				studentData st = new studentData(name, phone, city);
+				
+				boolean answer = studentDov.InserStudenttoDB(st);
+				
+				if (answer) {
+					System.out.println("Sucessfully inserted .........");
+				}else {
+					
+					System.out.println("something went wrong ......");
+				}
+				System.out.println(st);
+				System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+				
+				
+			}else if(c==2)
+			{
+				//delete student
+				
+				System.out.println("Enter Student ID to Delete:");
+				int id = Integer.parseInt(br.readLine());
+				
+				boolean answer =studentDov.deleteStudent(id);
+				
+				if(answer) {
+					System.out.println("deleted......");
+				}else {
+					System.out.println("something went wrong.....");
+				}
+				
+				System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+				
+			}else if(c==3) {
+				//display student
+				
+				studentDov.showAllStudents();
+				
+			}else if(c==4) {
+				
+				//exit 
+				break;
+			}else {
+				
+			}
+		}
+		
+		System.out.println("thankyou for using my application......");
+
+	}
+
+}
